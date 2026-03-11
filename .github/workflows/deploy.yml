@@ -53,3 +53,4 @@ jobs:
           docker stop conexoes
           docker rm --force conexoes
           docker run  -d -p 8080:8080 -e MONGO_URL=${{ secrets.MONGO_URL }} --network=rede --name conexoes gustavolaf/connections-ci:${{ github.sha }}
+          
