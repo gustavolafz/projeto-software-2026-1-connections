@@ -7,7 +7,6 @@ on:
 env:
   DOCKER_IMAGE: ezambomsantana/connections-ci
   CONTAINER_NAME: conexoes
-  APP_PORT: 8080
   DOCKER_USER: ezambomsantana
 
 jobs:
@@ -61,7 +60,8 @@ jobs:
             docker rm ${{ env.CONTAINER_NAME }}
 
             docker run -d \
-              -p ${{ env.APP_PORT }}:${{ env.APP_PORT }} \
+              -p 8080:8080 \
+              -e REDIS_URL=redis \
               -e MONGO_URL=${{ secrets.MONGO_URL }} \
               --network=rede \
               --name ${{ env.CONTAINER_NAME }} \
